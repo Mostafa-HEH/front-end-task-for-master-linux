@@ -1,10 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "../Pages/Login";
-
-const Exam = () => {
-  return <div>Exam</div>;
-};
+import Exam from "../Pages/Exam";
 
 const Result = () => {
   return <div>Result</div>;
