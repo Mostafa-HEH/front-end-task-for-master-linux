@@ -3,12 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../Pages/Login";
 import Exam from "../Pages/Exam";
 import Result from "../Pages/Result";
-
-const Page404 = () => {
-  return <div>404 Page Not Found</div>;
-};
+import Page404 from "../Pages/Page404";
 
 const PagesRoutes = () => {
+  // Render defferent pages (from /pages) base on routes with react router dom
   return (
     <Router>
       <Routes>
