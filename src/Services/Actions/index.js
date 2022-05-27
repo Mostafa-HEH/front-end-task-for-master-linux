@@ -12,6 +12,12 @@ export const studentAnswers = (data) => {
   };
 };
 
+export const studentScore = () => {
+  return {
+    type: "STUDENT_SCORE",
+  };
+};
+
 export const resetStudentScore = () => {
   return {
     type: "RESET_STUDENT_SCORE",

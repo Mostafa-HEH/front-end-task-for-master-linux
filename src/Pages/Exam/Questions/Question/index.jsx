@@ -15,6 +15,9 @@ import { studentScore } from "../../../../Services/Actions";
 
 import { useStyles } from "./styles";
 
+// ====================>From Task<== ============================
+// Choices must be rendered in a random order each time
+
 // Random array generator function
 const randomArray = randomArrayGenerator(4);
 
@@ -42,6 +45,9 @@ const Question = ({
     // uncheched
     setStudentAnswer(NaN);
   };
+
+  // ====================>From Task<== ============================
+  // All questions are multiple choices (with 4 choices – 1 correct answer).
 
   return (
     <Box className={classes.container}>
@@ -77,6 +83,9 @@ const Question = ({
           </ListItem>
         ))}
       </List>
+      {/* ====================>From Task<== ============================ */}
+      {/* All questions must be answered (student can NOT skip questions – student can NOT
+          go to the next question until he answers the current question). */}
       {studentAnswer ? (
         <Button
           variant="contained"
