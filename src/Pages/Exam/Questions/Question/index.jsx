@@ -50,29 +50,40 @@ const Question = ({
 
   return (
     <Box className={classes.container}>
-      <Typography component="h2">{question}</Typography>
+      <Typography component="h2" className={classes.question}>
+        {question}
+      </Typography>
       <List disablePadding>
         {[0, 1, 2, 3].map((answer) => (
           <ListItem
             key={answer}
             onClick={() => handleToggle(answers[randomArray[answer]].id)}
             disablePadding
+            className={classes.listItem}
           >
             <ListItemButton dense>
-              <ListItemIcon>
+              <ListItemIcon className={classes.icon}>
                 <Checkbox
                   edge="start"
                   disableRipple
                   checked={studentAnswer === answers[randomArray[answer]].id}
                 />
               </ListItemIcon>
-              <ListItemText primary={answers[randomArray[answer]].answer} />
+              <ListItemText
+                primary={answers[randomArray[answer]].answer}
+                className={classes.listtext}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       {studentAnswer ? (
-        <Button variant="contained" size="large" onClick={submitAnswer}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={submitAnswer}
+          className={classes.button}
+        >
           Next question
         </Button>
       ) : null}

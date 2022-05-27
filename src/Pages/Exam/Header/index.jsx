@@ -29,7 +29,12 @@ const Header = ({ curentQuestion }) => {
       </Box>
       <Divider className={classes.divider} />
       <Box className={classes.bottom}>
-        <Typography className={classes.leftanswers}>6 answers left</Typography>
+        <Typography component="p" className={classes.leftanswers}>
+          {6 - curentQuestion} answers left
+        </Typography>
+        <Typography component="p" className={classes.studentname}>
+          Welcome Mostafa
+        </Typography>
       </Box>
     </Box>
   );

@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import Question from "./Question";
 
-import { useStyles } from "./styles";
-
 const QUESTIONS_DATA = [
   {
     id: 1,
@@ -208,7 +206,6 @@ while (randomArray.length !== 7) {
 }
 
 const Questions = ({ setCurentQuestion }) => {
-  const classes = useStyles();
   // change index for randomArray to get question unige index
   const [questionNum, setQuestionNum] = useState(0);
 
@@ -225,12 +222,10 @@ const Questions = ({ setCurentQuestion }) => {
   };
 
   return (
-    <div>
-      <Question
-        questionData={QUESTIONS_DATA[randomArray[questionNum]]}
-        handleQuestionChange={handleQuestionChange}
-      />
-    </div>
+    <Question
+      questionData={QUESTIONS_DATA[randomArray[questionNum]]}
+      handleQuestionChange={handleQuestionChange}
+    />
   );
 };
 
