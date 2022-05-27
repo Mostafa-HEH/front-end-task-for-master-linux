@@ -5,6 +5,9 @@ import Question from "./Question";
 import { QUESTIONS_DATA } from "../../../Utils/data/questions-data";
 import { randomArrayGenerator } from "../../../Utils/common/random-array-generator";
 
+// ====================>From Task<== ============================
+// Each exam contains 7 questions (must be rendered in a random order).
+
 // Random array generator function
 const randomArray = randomArrayGenerator(7);
 
@@ -27,7 +30,8 @@ const Questions = ({ setCurentQuestion }) => {
     setCurentQuestion(questionNum + 1);
   };
 
-  console.log(randomArray);
+  // ====================>From Task<== ============================
+  // After successful enrollment, student should find his/her first question.
 
   return (
     <Question

@@ -1,3 +1,7 @@
+// ====================>From Task<== ============================
+// • No need to create database, backend, … Just keep questions and answers in arrays
+// or objects.
+
 export const QUESTIONS_DATA = [
   {
     id: 1,
@@ -42,12 +46,12 @@ export const QUESTIONS_DATA = [
       },
       {
         id: 3,
-        answer: "Both A and B",
+        answer: "Both var and let",
         correct: true,
       },
       {
         id: 4,
-        answer: "None of the above",
+        answer: "None of them",
         correct: false,
       },
     ],
@@ -69,12 +73,12 @@ export const QUESTIONS_DATA = [
       },
       {
         id: 3,
-        answer: "Both A and B",
+        answer: "Both getElementbyId() and getElementsByClassName()",
         correct: true,
       },
       {
         id: 4,
-        answer: "None of the above",
+        answer: "None of them",
         correct: false,
       },
     ],
@@ -128,7 +132,7 @@ export const QUESTIONS_DATA = [
       },
       {
         id: 4,
-        answer: "All of the above",
+        answer: "All of them",
         correct: true,
       },
     ],
@@ -182,7 +186,7 @@ export const QUESTIONS_DATA = [
       },
       {
         id: 4,
-        answer: "None of the above.",
+        answer: "None of them.",
         correct: false,
       },
     ],

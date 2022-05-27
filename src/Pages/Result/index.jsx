@@ -19,6 +19,10 @@ const Result = ({ userData, studentScore }) => {
     setMarks(Math.floor((studentScore / 7) * 100));
   }, [studentScore]);
 
+  // ====================>From Task<== ============================
+  //   • Once the student finishes all questions, the application must show his/her score in
+  // percentage (%).
+
   return (
     <Box className={classes.container}>
       <Paper elevation={2} className={classes.subcontainer}>

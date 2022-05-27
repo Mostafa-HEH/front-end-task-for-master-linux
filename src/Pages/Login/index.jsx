@@ -20,6 +20,10 @@ import FormHead from "./FormHead";
 
 import { useStyles } from "./styles";
 
+// ====================>From Task<== ============================
+// Students should login into the exam using their name, email, and password (use
+// Timeout to simulate external API Call to authenticate students).
+
 // Design Inspiration
 //  https://dribbble.com/shots/14981045-Login-Sign-in
 
@@ -53,6 +57,9 @@ const Login = ({ loggedUser, resetStudentScore }) => {
 
   // simulate students external API  authenticate
   const [loading, setLoading] = useState(false);
+
+  // ====================>From Task<== ============================
+  // Name, email, and password should be validated (use a suitable validation criteria).
 
   // inputs validation
   const validateInputs = (name = "submit") => {
