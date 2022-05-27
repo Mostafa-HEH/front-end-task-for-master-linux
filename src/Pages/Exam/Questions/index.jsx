@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Question from "./Question";
 
 import { useStyles } from "./styles";
@@ -193,12 +195,41 @@ const QUESTIONS_DATA = [
   },
 ];
 
-const Questions = () => {
+// random array for answers
+let randomArray = [];
+
+// push random number which isn't in the array
+while (randomArray.length !== 7) {
+  // assign randome number from 0 to 7
+  let randomNumber = Math.floor(Math.random() * 7);
+
+  // if randome number isn't in ther array push it
+  if (!randomArray.includes(randomNumber)) randomArray.push(randomNumber);
+}
+
+const Questions = ({ setCurentQuestion }) => {
   const classes = useStyles();
+  // change index for randomArray to get question unige index
+  const [questionNum, setQuestionNum] = useState(0);
+
+  // change qustion to next
+  const handleQuestionChange = () => {
+    // if question finished do this
+    if (questionNum === 6) return;
+
+    // else get me next one
+    setQuestionNum((prev) => prev + 1);
+
+    // get question number for exam component
+    setCurentQuestion(questionNum + 1);
+  };
 
   return (
     <div>
-      <Question questionData={QUESTIONS_DATA[0]} />
+      <Question
+        questionData={QUESTIONS_DATA[randomArray[questionNum]]}
+        handleQuestionChange={handleQuestionChange}
+      />
     </div>
   );
 };

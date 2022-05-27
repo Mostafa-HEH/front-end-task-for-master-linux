@@ -23,7 +23,10 @@ while (randomArray.length !== 4) {
   if (!randomArray.includes(randomNumber)) randomArray.push(randomNumber);
 }
 
-const Question = ({ questionData: { id: qsID, question, answers } }) => {
+const Question = ({
+  questionData: { id: qsID, question, answers },
+  handleQuestionChange,
+}) => {
   const [studentAnswer, setStudentAnswer] = useState(NaN);
   const classes = useStyles();
 
@@ -37,6 +40,12 @@ const Question = ({ questionData: { id: qsID, question, answers } }) => {
     answers.forEach(({ id, correct }) => {
       if (id === studentAnswer && correct) console.log("answer is correct");
     });
+
+    // change question
+    if (studentAnswer) handleQuestionChange();
+
+    // uncheched
+    setStudentAnswer(NaN);
   };
 
   return (
@@ -62,9 +71,11 @@ const Question = ({ questionData: { id: qsID, question, answers } }) => {
           </ListItem>
         ))}
       </List>
-      <Button variant="contained" size="large" onClick={submitAnswer}>
-        Next question
-      </Button>
+      {studentAnswer ? (
+        <Button variant="contained" size="large" onClick={submitAnswer}>
+          Next question
+        </Button>
+      ) : null}
     </Box>
   );
 };
