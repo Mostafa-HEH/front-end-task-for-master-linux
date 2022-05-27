@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
@@ -11,12 +12,14 @@ import { useStyles } from "./styles";
 
 const Exam = () => {
   const classes = useStyles();
+  // current question is
+  const [curentQuestion, setCurentQuestion] = useState(0);
 
   return (
     <Box className={classes.container}>
       <Paper elevation={2} className={classes.questionscontainer}>
-        <Header />
-        <Questions />
+        <Header curentQuestion={curentQuestion} />
+        <Questions setCurentQuestion={setCurentQuestion} />
       </Paper>
     </Box>
   );
