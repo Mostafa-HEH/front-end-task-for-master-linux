@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Question from "./Question";
 
@@ -209,10 +210,13 @@ const Questions = ({ setCurentQuestion }) => {
   // change index for randomArray to get question unige index
   const [questionNum, setQuestionNum] = useState(0);
 
+  // change route
+  const navigate = useNavigate();
+
   // change qustion to next
   const handleQuestionChange = () => {
     // if question finished do this
-    if (questionNum === 6) return;
+    if (questionNum === 6) navigate("/result");
 
     // else get me next one
     setQuestionNum((prev) => prev + 1);
@@ -225,6 +229,7 @@ const Questions = ({ setCurentQuestion }) => {
     <Question
       questionData={QUESTIONS_DATA[randomArray[questionNum]]}
       handleQuestionChange={handleQuestionChange}
+      questionNum={questionNum}
     />
   );
 };

@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 
 import { useStyles } from "./styles";
 
-const Header = ({ curentQuestion }) => {
+const Header = ({ curentQuestion, username }) => {
   const classes = useStyles();
   const [prs, setPrs] = useState(0);
 
@@ -33,7 +33,7 @@ const Header = ({ curentQuestion }) => {
           {6 - curentQuestion} answers left
         </Typography>
         <Typography component="p" className={classes.studentname}>
-          Welcome Mostafa
+          Welcome {username}
         </Typography>
       </Box>
     </Box>

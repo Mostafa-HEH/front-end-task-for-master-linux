@@ -8,12 +8,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
+import { connect } from "react-redux";
+
+import { studentScore } from "../../../../Services/Actions";
 
 import { useStyles } from "./styles";
 
 // random array for answers
 let randomArray = [];
-
 // push random number which isn't in the array
 while (randomArray.length !== 4) {
   // assign randome number from 0 to 3
@@ -24,8 +26,10 @@ while (randomArray.length !== 4) {
 }
 
 const Question = ({
-  questionData: { id: qsID, question, answers },
+  questionData,
   handleQuestionChange,
+  studentScore,
+  questionNum,
 }) => {
   const [studentAnswer, setStudentAnswer] = useState(NaN);
   const classes = useStyles();
@@ -37,9 +41,7 @@ const Question = ({
 
   // Submit Question answer
   const submitAnswer = () => {
-    answers.forEach(({ id, correct }) => {
-      if (id === studentAnswer && correct) console.log("answer is correct");
-    });
+    if (questionData.answers[studentAnswer - 1].correct) studentScore();
 
     // change question
     if (studentAnswer) handleQuestionChange();
@@ -51,13 +53,15 @@ const Question = ({
   return (
     <Box className={classes.container}>
       <Typography component="h2" className={classes.question}>
-        {question}
+        {questionData.question}
       </Typography>
       <List disablePadding>
         {[0, 1, 2, 3].map((answer) => (
           <ListItem
             key={answer}
-            onClick={() => handleToggle(answers[randomArray[answer]].id)}
+            onClick={() =>
+              handleToggle(questionData.answers[randomArray[answer]].id)
+            }
             disablePadding
             className={classes.listItem}
           >
@@ -66,11 +70,14 @@ const Question = ({
                 <Checkbox
                   edge="start"
                   disableRipple
-                  checked={studentAnswer === answers[randomArray[answer]].id}
+                  checked={
+                    studentAnswer ===
+                    questionData.answers[randomArray[answer]].id
+                  }
                 />
               </ListItemIcon>
               <ListItemText
-                primary={answers[randomArray[answer]].answer}
+                primary={questionData.answers[randomArray[answer]].answer}
                 className={classes.listtext}
               />
             </ListItemButton>
@@ -84,11 +91,11 @@ const Question = ({
           onClick={submitAnswer}
           className={classes.button}
         >
-          Next question
+          {questionNum === 6 ? "Finish" : "Next question"}
         </Button>
       ) : null}
     </Box>
   );
 };
 
-export default Question;
+export default connect(null, { studentScore })(Question);
