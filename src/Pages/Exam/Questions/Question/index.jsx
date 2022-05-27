@@ -10,20 +10,13 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import { connect } from "react-redux";
 
+import { randomArrayGenerator } from "../../../../Utils/common/random-array-generator";
 import { studentScore } from "../../../../Services/Actions";
 
 import { useStyles } from "./styles";
 
-// random array for answers
-let randomArray = [];
-// push random number which isn't in the array
-while (randomArray.length !== 4) {
-  // assign randome number from 0 to 3
-  let randomNumber = Math.floor(Math.random() * 4);
-
-  // if randome number isn't in ther array push it
-  if (!randomArray.includes(randomNumber)) randomArray.push(randomNumber);
-}
+// Random array generator function
+const randomArray = randomArrayGenerator(4);
 
 const Question = ({
   questionData,

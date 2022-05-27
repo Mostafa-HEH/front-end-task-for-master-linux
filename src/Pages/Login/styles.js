@@ -10,12 +10,18 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   logo: {
-    color: theme.palette.common.white,
-    fontSize: "3rem !important",
-    margin: "42px 0 !important",
-    fontWeight: "600 !important",
-    textAlign: "center",
-    lineHeight: "44px !important",
+    "&.MuiTypography-root": {
+      color: theme.palette.common.white,
+      fontSize: "3rem",
+      margin: "42px 0",
+      fontWeight: "600",
+      textAlign: "center",
+      lineHeight: "44px",
+      [theme.breakpoints.down("sm")]: {
+        margin: "16px 0",
+        fontSize: "2rem",
+      },
+    },
   },
 
   form: {
@@ -54,14 +60,5 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     margin: "auto",
     textAlign: "center",
-  },
-
-  head: {
-    marginBottom: "24px",
-  },
-
-  title: {
-    fontWeight: "600 !important",
-    fontSize: "2rem !important",
   },
 }));

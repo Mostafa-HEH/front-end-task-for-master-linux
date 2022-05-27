@@ -10,16 +10,6 @@ const loggedUserReducer = (data = { name: "" }, action) => {
   }
 };
 
-const studentAnswersReducer = (data = [], action) => {
-  switch (action.type) {
-    case "STUDENT_ANSWERS":
-      return [...data, action.payload];
-
-    default:
-      return data;
-  }
-};
-
 const studentScoreReducers = (data = 0, action) => {
   switch (action.type) {
     case "STUDENT_SCORE":
@@ -34,6 +24,5 @@ const studentScoreReducers = (data = 0, action) => {
 
 export default combineReducers({
   userData: loggedUserReducer,
-  studentAnswers: studentAnswersReducer,
   studentScore: studentScoreReducers,
 });

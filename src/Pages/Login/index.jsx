@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
@@ -17,6 +15,8 @@ import { connect } from "react-redux";
 
 import { loggedUser } from "../../Services/Actions";
 import { resetStudentScore } from "../../Services/Actions";
+import Input from "./Input";
+import FormHead from "./FormHead";
 
 import { useStyles } from "./styles";
 
@@ -27,16 +27,11 @@ const Login = ({ loggedUser, resetStudentScore }) => {
   // Styles classes from ./styles.js
   const classes = useStyles();
 
-  // change route
+  // change route hock
   const navigate = useNavigate();
 
   //   Password visability
   const [passVisability, setPassVisability] = useState(false);
-
-  useEffect(() => {
-    resetStudentScore();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   //   Values thats comes from on changes function
   const [values, setValues] = useState({
@@ -108,6 +103,12 @@ const Login = ({ loggedUser, resetStudentScore }) => {
     }
   };
 
+  useEffect(() => {
+    // Reset students score because it add previous to new score if page not refresh becuse of redux
+    resetStudentScore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   //   Handle fields changes and assign theme into new state
   const handleChanges = (e, name) => {
     setValues((prev) => ({
@@ -133,6 +134,7 @@ const Login = ({ loggedUser, resetStudentScore }) => {
     //add user Data with this action  to Redux store
     loggedUser(values);
 
+    // semulate api request with external api
     setTimeout(() => {
       navigate("/exam");
       setLoading(false);
@@ -156,85 +158,48 @@ const Login = ({ loggedUser, resetStudentScore }) => {
           </Box>
         ) : null}
         <Box className={classes.formwrapper}>
-          <Box className={classes.head}>
-            <Typography component="h5" className={classes.title}>
-              Hello There!
-            </Typography>
-            <Typography component="h6" className={classes.subtitle}>
-              Enter your credentials to enroll exam
-            </Typography>
-          </Box>
-          <TextField
-            required
+          <FormHead />
+          <Input
             label="Name"
             type="text"
             name="name"
             value={values.name}
-            onChange={(e) => handleChanges(e, "name")}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PersonIcon color="primary" />
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
+            handleChanges={handleChanges}
+            startAdormentIcon={<PersonIcon color="primary" />}
             placeholder="Jhon Doo"
-            error={nameValidate.state}
-            helperText={nameValidate.state ? nameValidate.massage : null}
+            validate={nameValidate}
           />
-          <TextField
-            required
+          <Input
             label="Email"
             type="email"
             name="email"
             value={values.email}
-            onChange={(e) => handleChanges(e, "email")}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon color="primary" />
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
+            handleChanges={handleChanges}
+            startAdormentIcon={<EmailIcon color="primary" />}
             placeholder="user@masterlinux.com"
           />
-          <TextField
-            required
+          <Input
             label="Password"
             type={passVisability ? "text" : "password"}
             name="password"
             value={values.password}
-            onChange={(e) => handleChanges(e, "password")}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <HttpsIcon color="primary" />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setPassVisability((prev) => !prev)}
-                    edge="end"
-                  >
-                    {passVisability ? (
-                      <VisibilityOff color="primary" />
-                    ) : (
-                      <Visibility color="primary" />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
-            placeholder="xxxxxxxx"
-            error={passwordValidate.state}
-            helperText={
-              passwordValidate.state ? passwordValidate.massage : null
+            handleChanges={handleChanges}
+            startAdormentIcon={<HttpsIcon color="primary" />}
+            endAdormentIcon={
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setPassVisability((prev) => !prev)}
+                edge="end"
+              >
+                {passVisability ? (
+                  <VisibilityOff color="primary" />
+                ) : (
+                  <Visibility color="primary" />
+                )}
+              </IconButton>
             }
+            placeholder="xxxxxxxx"
+            validate={passwordValidate}
           />
           <Button
             variant="contained"
