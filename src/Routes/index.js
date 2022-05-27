@@ -2,10 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "../Pages/Login";
 import Exam from "../Pages/Exam";
-
-const Result = () => {
-  return <div>Result</div>;
-};
+import Result from "../Pages/Result";
 
 const Page404 = () => {
   return <div>404 Page Not Found</div>;
