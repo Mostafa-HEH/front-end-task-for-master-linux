@@ -37,12 +37,32 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   progress: {
-    fontWeight: "500 !important",
+    "&.MuiTypography-root": {
+      fontWeight: "800",
+      textTransform: "uppercase",
+      fontSize: "0.8rem",
+    },
   },
 
   divider: {
     "&.MuiDivider-root": {
-      margin: "32px 0",
+      margin: "16px 0",
+    },
+  },
+
+  leftanswers: {
+    "&.MuiTypography-root": {
+      fontWeight: "800",
+      textTransform: "uppercase",
+      fontSize: "0.8rem",
+    },
+  },
+
+  studentname: {
+    "&.MuiTypography-root": {
+      fontWeight: "800",
+      textTransform: "uppercase",
+      fontSize: "0.8rem",
     },
   },
 }));

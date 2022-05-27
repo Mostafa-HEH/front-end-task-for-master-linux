@@ -12,7 +12,9 @@ export const useStyles = makeStyles((theme) => ({
     padding: "64px 32px",
     width: " 100%",
     maxWidth: "900px",
+
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px 32px",
+    },
   },
-
-
 }));
