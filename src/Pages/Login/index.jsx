@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -13,13 +13,17 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
+import { connect } from "react-redux";
+
+import { loggedUser } from "../../Services/Actions";
+import { resetStudentScore } from "../../Services/Actions";
 
 import { useStyles } from "./styles";
 
 // Design Inspiration
 //  https://dribbble.com/shots/14981045-Login-Sign-in
 
-const Login = () => {
+const Login = ({ loggedUser, resetStudentScore }) => {
   // Styles classes from ./styles.js
   const classes = useStyles();
 
@@ -28,6 +32,11 @@ const Login = () => {
 
   //   Password visability
   const [passVisability, setPassVisability] = useState(false);
+
+  useEffect(() => {
+    resetStudentScore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //   Values thats comes from on changes function
   const [values, setValues] = useState({
@@ -121,13 +130,13 @@ const Login = () => {
     // active loader
     setLoading(true);
 
-    // TODO add to Redux store
-    console.log(values);
+    //add user Data with this action  to Redux store
+    loggedUser(values);
 
     setTimeout(() => {
       navigate("/exam");
       setLoading(false);
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -241,4 +250,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, {
+  loggedUser,
+  resetStudentScore,
+})(Login);
